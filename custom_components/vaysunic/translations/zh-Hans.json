@@ -1,0 +1,29 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "VAYSUNIC 光伏",
+        "description": "填写网关地址和在 App 里生成的 HA 令牌。",
+        "data": {
+          "host": "网关地址",
+          "token": "HA 令牌"
+        }
+      },
+      "reauth_confirm": {
+        "title": "重新认证 VAYSUNIC 光伏",
+        "description": "令牌无效或已被吊销。请在 App 里重新生成 HA 令牌后填入。",
+        "data": {
+          "token": "HA 令牌"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "无法连接网关。",
+      "invalid_auth": "令牌无效或已吊销。"
+    },
+    "abort": {
+      "already_configured": "该令牌已配置。",
+      "reauth_successful": "重新认证成功。"
+    }
+  }
+}

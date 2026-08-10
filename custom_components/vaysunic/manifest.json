@@ -1,0 +1,11 @@
+{
+  "domain": "vaysunic",
+  "name": "VAYSUNIC Solar",
+  "codeowners": ["@vaysunic-com"],
+  "config_flow": true,
+  "documentation": "https://github.com/vaysunic-com/ha-integration",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/vaysunic-com/ha-integration/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}
