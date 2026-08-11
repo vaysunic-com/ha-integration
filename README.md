@@ -2,6 +2,7 @@
 
 [![HACS: Custom][hacs-badge]][hacs]
 [![Release][release-badge]][releases]
+[![Validate][validate-badge]][validate]
 ![HA min version][ha-badge]
 ![IoT class: cloud polling][iot-badge]
 
@@ -159,6 +160,8 @@ permission to use the VAYSUNIC name or logo — see section 6.
 [hacs-badge]: https://img.shields.io/badge/HACS-Custom-41BDF5.svg
 [release-badge]: https://img.shields.io/github/v/release/vaysunic-com/ha-integration
 [releases]: https://github.com/vaysunic-com/ha-integration/releases
+[validate]: https://github.com/vaysunic-com/ha-integration/actions/workflows/validate.yml
+[validate-badge]: https://github.com/vaysunic-com/ha-integration/actions/workflows/validate.yml/badge.svg
 [ha-badge]: https://img.shields.io/badge/Home%20Assistant-2024.1.0%2B-41BDF5.svg
 [iot-badge]: https://img.shields.io/badge/IoT%20class-cloud%20polling-orange.svg
 [issues]: https://github.com/vaysunic-com/ha-integration/issues
