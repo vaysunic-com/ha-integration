@@ -11,7 +11,7 @@
       },
       "reauth_confirm": {
         "title": "Re-authenticate VAYSUNIC Solar",
-        "description": "The token is invalid or revoked. Enter a new HA token generated in the app.",
+        "description": "The token is invalid or has been disabled. Enter a new HA token generated in the app.",
         "data": {
           "token": "HA token"
         }
@@ -19,7 +19,7 @@
     },
     "error": {
       "cannot_connect": "Failed to connect to the gateway.",
-      "invalid_auth": "Invalid or revoked token."
+      "invalid_auth": "Invalid or disabled token."
     },
     "abort": {
       "already_configured": "This token is already configured.",

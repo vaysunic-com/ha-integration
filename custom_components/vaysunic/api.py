@@ -19,7 +19,7 @@ class CannotConnect(Exception):
 
 
 class InvalidAuth(Exception):
-    """令牌无效或已吊销(401)。"""
+    """令牌无效或已禁用(401)。"""
 
 
 class VaysunicApiClient:
@@ -43,15 +43,15 @@ class VaysunicApiClient:
         except InvalidAuth:
             raise
         except aiohttp.ClientError as err:
-            raise CannotConnect(f"请求 {url} 失败: {err}") from err
+            raise CannotConnect(f"Request to {url} failed: {err}") from err
         except Exception as err:  # noqa: BLE001  解析等其它异常统一归为连接失败
-            raise CannotConnect(f"解析 {url} 响应失败: {err}") from err
+            raise CannotConnect(f"Could not parse the response from {url}: {err}") from err
 
         code = body.get("code")
         if code == CODE_UNAUTHORIZED:
             raise InvalidAuth
         if code is not None and code != 200:
-            raise CannotConnect(f"{url} 返回 code={code} msg={body.get('msg')}")
+            raise CannotConnect(f"{url} returned code={code} msg={body.get('msg')}")
         return body.get("data") or []
 
     async def async_get_stations(self) -> list:

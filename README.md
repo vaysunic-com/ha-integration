@@ -23,7 +23,7 @@ This is a **cloud-polling** integration (`iot_class: cloud_polling`), not a loca
 
 - **Two minute polling**, matched to how often devices actually report.
 - **No account credentials.** You paste a dedicated token, never your username and password.
-- **Revocable at any time.** Revoking a token cuts Home Assistant off immediately.
+- **Can be disabled at any time.** Disabling a token cuts Home Assistant off immediately.
 - **Read-only.** The integration cannot change anything on your system.
 
 ## Requirements
@@ -57,7 +57,7 @@ Copy `custom_components/vaysunic` into your Home Assistant `config/custom_compon
 | **Gateway URL** | `https://application.vaysunic.com/ha` — already filled in for you |
 | **HA token** | The token you generated in the app |
 
-The token is validated immediately — a wrong or revoked token is rejected on the spot. If a working token is later revoked, Home Assistant raises a re-authentication prompt so you can paste a new one without losing your entity history.
+The token is validated immediately — a wrong or disabled token is rejected on the spot. If a working token is later disabled, Home Assistant raises a re-authentication prompt so you can paste a new one without losing your entity history.
 
 One token equals one config entry, and it covers **every station you own** — there is no per-station selection. Stations shared with you by another account are not included.
 
@@ -117,7 +117,7 @@ New measurements and new devices are picked up automatically on later polls — 
 ## Data freshness
 
 - Home Assistant polls every **two minutes**. Devices report roughly every three minutes, so polling faster would only fetch the same reading repeatedly.
-- A device that stops reporting is shown as offline and its entities become **unavailable**.
+- A device that stops reporting is shown as offline and its entities become **unavailable**. The same happens to every entity if the gateway becomes unreachable or the token is disabled — readings are never left frozen at their last value.
 - **Microinverters go unavailable overnight.** They stop reporting after dark and come back in the morning. This is normal and does **not** corrupt your Energy dashboard: `total_increasing` treats an unavailable gap as a pause, not a counter reset, and there is no generation overnight to lose. Grid meters stay online around the clock, so import and export figures are unaffected.
 
 ## Privacy and data handling
@@ -125,7 +125,7 @@ New measurements and new devices are picked up automatically on later polls — 
 - The integration only makes **outbound** HTTPS requests from your Home Assistant. Nothing connects inward, and no message broker is involved.
 - It never asks for your account password — only the dedicated token.
 - The API is read-only. Nothing in Home Assistant can change your system's settings.
-- Revoke the token and data stops immediately. Remove the integration and no traffic is sent at all.
+- Disable the token and data stops immediately. Remove the integration and no traffic is sent at all.
 
 ## Troubleshooting
 
@@ -141,7 +141,7 @@ logger:
 | --- | --- |
 | Setup succeeds but no entities appear | All your devices are currently offline. Entities are created from the first poll that returns readings — check back during daylight, or confirm in the app that a device is online |
 | Entities show *unavailable* at night | Expected for microinverters, see [Data freshness](#data-freshness) |
-| *Invalid or revoked token* | The token was revoked or mistyped. Home Assistant will prompt for re-authentication — paste a fresh one |
+| *Invalid or disabled token* | The token was disabled or mistyped. Home Assistant will prompt for re-authentication — paste a fresh one |
 | *Failed to connect to the gateway* | Wrong gateway URL, or your Home Assistant cannot reach the internet. Check the URL against the table above |
 | An energy sensor is missing from the Energy dashboard dropdown | Home Assistant only offers entities that have accumulated statistics. A newly added device can take up to two hours to appear |
 | A measurement you expect is not there | Only what the device actually reports is exposed |

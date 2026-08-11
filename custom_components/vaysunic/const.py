@@ -10,7 +10,7 @@ DOMAIN = "vaysunic"
 
 # 配置项 key
 CONF_HOST = "host"          # 云端网关 base URL，形如 https://application.vaysunic.com/ha
-CONF_TOKEN = "token"        # App 里生成的 HA 令牌(不透明、可吊销)
+CONF_TOKEN = "token"        # App 里生成的 HA 令牌(不透明、可禁用)
 
 # 默认网关; 配置流程里可改写
 DEFAULT_HOST = "https://application.vaysunic.com/ha"

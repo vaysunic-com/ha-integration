@@ -57,7 +57,7 @@ class VaysunicConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_reauth(
         self, entry_data: Mapping[str, Any]
     ) -> ConfigFlowResult:
-        """令牌失效(被吊销)后由 coordinator 触发，进入重填令牌。"""
+        """令牌失效(被禁用)后由 coordinator 触发，进入重填令牌。"""
         self._reauth_entry = self.hass.config_entries.async_get_entry(
             self.context["entry_id"]
         )

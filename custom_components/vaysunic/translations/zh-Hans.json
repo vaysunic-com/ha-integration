@@ -11,7 +11,7 @@
       },
       "reauth_confirm": {
         "title": "重新认证 VAYSUNIC 光伏",
-        "description": "令牌无效或已被吊销。请在 App 里重新生成 HA 令牌后填入。",
+        "description": "令牌无效或已被禁用。请在 App 里重新生成 HA 令牌后填入。",
         "data": {
           "token": "HA 令牌"
         }
@@ -19,7 +19,7 @@
     },
     "error": {
       "cannot_connect": "无法连接网关。",
-      "invalid_auth": "令牌无效或已吊销。"
+      "invalid_auth": "令牌无效或已禁用。"
     },
     "abort": {
       "already_configured": "该令牌已配置。",

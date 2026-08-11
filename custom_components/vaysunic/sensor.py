@@ -97,6 +97,11 @@ class VaysunicSensor(CoordinatorEntity[VaysunicCoordinator], SensorEntity):
 
     @property
     def available(self) -> bool:
+        # last_update_success 不能省: 只看设备的 online 标志的话, 网关不可达或令牌被撤时
+        # 协调器停止刷新, 实体却仍是 available, 永远停在最后一次拉到的读数上 ——
+        # 用户看到的是一个"活着的"数字, 实际上早就断了(实测停更 10 分钟仍显示 16.0 W)。
+        if not self.coordinator.last_update_success:
+            return False
         dev = (self.coordinator.data or {}).get("devices", {}).get(self._sn)
         return bool(dev and dev.get("online"))
 

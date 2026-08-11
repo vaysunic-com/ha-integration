@@ -70,8 +70,8 @@ class VaysunicCoordinator(DataUpdateCoordinator):
                 self._meta_fetched_at = datetime.now(timezone.utc)
             devices = await self.client.async_get_devices()
         except InvalidAuth as err:
-            # 触发 HA 重新认证(令牌被吊销/失效)
-            raise ConfigEntryAuthFailed("HA 令牌无效或已吊销") from err
+            # 触发 HA 重新认证(令牌被禁用/失效)
+            raise ConfigEntryAuthFailed("The access token is invalid or has been disabled") from err
         except CannotConnect as err:
             raise UpdateFailed(str(err)) from err
 
